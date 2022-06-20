@@ -1,0 +1,13 @@
+import {StyleSheet} from 'react-native';
+
+export default StyleSheet.create({
+  text_input:{
+    borderWidth:1,
+    marginBottom:10,
+    borderRadius:10,
+    paddingHorizontal:15
+  },
+  errorMessage:{
+    color:'red'
+  }
+});

@@ -2,8 +2,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import FavoriteJobs from './pages/FavoriteJobs/FavoriteJobs';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './pages/Login/Login';
 
