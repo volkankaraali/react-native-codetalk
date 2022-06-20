@@ -1,27 +1,21 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 
 import {SafeAreaView,View,Text} from 'react-native';
 import auth from '@react-native-firebase/auth';
-import Input from '../../components/Input/Input';
-
-
 import { Formik } from 'formik';
 import * as yup from 'yup';
-
-import styles from './Login.style';
 import Button from '../../components/Button/Button';
-import { showMessage, hideMessage } from 'react-native-flash-message';
+import Input from '../../components/Input/Input';
+import styles from './Register.style';
 import authErrorMessageParse from '../../utils/authErrorMessageParse';
+import { showMessage, hideMessage } from 'react-native-flash-message';
 
-function Login({navigation}) {
+function Register({navigation}) {
 
-  const [loading, setLoading] = useState(false);
-  
-  
   const register=async (userData)=>{
     try {
-      const req= await auth().createUserWithEmailAndPassword(`${userData.email}`,`${userData.password}`);
+      const req= await auth().signInWithEmailAndPassword(`${userData.email}`,`${userData.password}`);
       console.log(req);
     } catch (error) {
       console.log(error);
@@ -30,17 +24,14 @@ function Login({navigation}) {
         type: 'danger',
       });
     }
-
   };
 
-  const goToRegisterPage=()=>{
-    navigation.navigate('RegisterPage');
+  const goToLogin=()=>{
+    navigation.navigate('LoginPage');
   };
-
 
   return (
     <SafeAreaView style={styles.container}>
-      
       <Text style={styles.brand}>
         code Talk
       </Text>
@@ -58,6 +49,8 @@ function Login({navigation}) {
               yup.string().email('no valid email.').required('must be email.'),
             password:
               yup.string().min(6,'Min 6 char.').max(32,'Max 32 char.').required('must be password'),
+            repassword:
+              yup.string().oneOf([yup.ref('password')],'must be same with password').required('must be repassword')
           })
         }  
 
@@ -70,12 +63,13 @@ function Login({navigation}) {
             (
               <View style={styles.form_container}>
                 <Input error={errors.email} value={values.email} onChangeText={handleChange('email')} placeHolder='type email'/>
+
                 <Input error={errors.password} value={values.password} onChangeText={handleChange('password')} isSecure={true} placeHolder='type password'/>
+                <Input error={errors.repassword} value={values.repassword} onChangeText={handleChange('repassword')} isSecure={true} placeHolder='type repassword'/>
 
+                <Button text='register' onPress={handleSubmit} theme='primary'/>
 
-                <Button text='login' onPress={handleSubmit} theme='primary'/>
-
-                <Button text='register' onPress={goToRegisterPage} theme='secondary' />
+                <Button text='login' onPress={goToLogin} theme='secondary' />
 
               </View>
 
@@ -85,9 +79,8 @@ function Login({navigation}) {
   
 
       </Formik>
-   
     </SafeAreaView>
   );
 }
 
-export default Login;
+export default Register;
