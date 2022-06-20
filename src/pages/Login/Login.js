@@ -21,7 +21,7 @@ function Login({navigation}) {
   
   const register=async (userData)=>{
     try {
-      const req= await auth().createUserWithEmailAndPassword(`${userData.email}`,`${userData.password}`);
+      const req= await auth().signInWithEmailAndPassword(`${userData.email}`,`${userData.password}`);
       console.log(req);
     } catch (error) {
       console.log(error);

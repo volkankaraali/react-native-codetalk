@@ -15,7 +15,7 @@ function Register({navigation}) {
 
   const register=async (userData)=>{
     try {
-      const req= await auth().signInWithEmailAndPassword(`${userData.email}`,`${userData.password}`);
+      const req= await auth().createUserWithEmailAndPassword(`${userData.email}`,`${userData.password}`);
       console.log(req);
     } catch (error) {
       console.log(error);
@@ -63,21 +63,13 @@ function Register({navigation}) {
             (
               <View style={styles.form_container}>
                 <Input error={errors.email} value={values.email} onChangeText={handleChange('email')} placeHolder='type email'/>
-
                 <Input error={errors.password} value={values.password} onChangeText={handleChange('password')} isSecure={true} placeHolder='type password'/>
                 <Input error={errors.repassword} value={values.repassword} onChangeText={handleChange('repassword')} isSecure={true} placeHolder='type repassword'/>
-
                 <Button text='register' onPress={handleSubmit} theme='primary'/>
-
                 <Button text='login' onPress={goToLogin} theme='secondary' />
-
               </View>
-
-            )
-          
+            ) 
         }
-  
-
       </Formik>
     </SafeAreaView>
   );
