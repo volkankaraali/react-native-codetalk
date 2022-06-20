@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "88831140293",
+    "project_id": "patika-be472",
+    "storage_bucket": "patika-be472.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88831140293:android:0442e2acad763599acebac",
+        "android_client_info": {
+          "package_name": "com.codetalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88831140293-8bemlo0glpts1tidq4r00rp1j2duprd0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnA4W1pcS8R6BSDj4LKgM0irBtnpStLZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88831140293-8bemlo0glpts1tidq4r00rp1j2duprd0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88831140293:android:b360de155b349d30acebac",
+        "android_client_info": {
+          "package_name": "com.firstapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88831140293-8bemlo0glpts1tidq4r00rp1j2duprd0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnA4W1pcS8R6BSDj4LKgM0irBtnpStLZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88831140293-8bemlo0glpts1tidq4r00rp1j2duprd0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
