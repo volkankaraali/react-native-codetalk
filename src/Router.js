@@ -8,6 +8,8 @@ import FlashMessage from 'react-native-flash-message';
 import Register from './pages/Register/Register';
 import auth from '@react-native-firebase/auth';
 import Rooms from './pages/Rooms/Rooms';
+import RoomDetail from './pages/RoomDetail/RoomDetail';
+import colors from './styles/colors';
 
 const Stack=createNativeStackNavigator();
 
@@ -38,7 +40,6 @@ function Router() {
 
   useEffect(() => {
     auth().onAuthStateChanged((user)=>{
-      console.log(user);
       setUserSessions(!!user);
     });
   }, []);
@@ -46,11 +47,28 @@ function Router() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerTitleAlign:'center',
+          headerStyle:{
+            backgroundColor:colors.red,
+            color:colors.black
+          }
+        }}
+      >
         {
-          !userSessions ? <AuthStack/>
+          !userSessions 
+            ? 
+            <AuthStack/>
             :
-            <Stack.Screen name='RoomsPage' component={Rooms}/>
+            <>
+              <Stack.Screen name='RoomsPage' component={Rooms} options={{
+                title:'Rooms'
+              }}/>
+              <Stack.Screen name='RoomDetailPage' component={RoomDetail} options={{
+                title:'Room detail'
+              }}/>
+            </>
         }
         
       </Stack.Navigator>
