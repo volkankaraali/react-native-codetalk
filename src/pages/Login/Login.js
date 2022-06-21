@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 
-import {SafeAreaView,View,Text} from 'react-native';
+import {SafeAreaView,View,Text, ActivityIndicator} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import Input from '../../components/Input/Input';
 
@@ -20,11 +20,12 @@ function Login({navigation}) {
   
   
   const register=async (userData)=>{
+    setLoading(true);
     try {
       const req= await auth().signInWithEmailAndPassword(`${userData.email}`,`${userData.password}`);
-      console.log(req);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      setLoading(false);
       showMessage({
         message: authErrorMessageParse(error.code),
         type: 'danger',
@@ -36,7 +37,6 @@ function Login({navigation}) {
   const goToRegisterPage=()=>{
     navigation.navigate('RegisterPage');
   };
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -73,7 +73,7 @@ function Login({navigation}) {
                 <Input error={errors.password} value={values.password} onChangeText={handleChange('password')} isSecure={true} placeHolder='type password'/>
 
 
-                <Button text='login' onPress={handleSubmit} theme='primary'/>
+                <Button text={loading ? <ActivityIndicator/>:'login'} onPress={handleSubmit} theme='primary'/>
 
                 <Button text='register' onPress={goToRegisterPage} theme='secondary' />
 

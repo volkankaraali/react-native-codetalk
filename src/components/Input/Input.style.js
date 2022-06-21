@@ -8,6 +8,7 @@ export default StyleSheet.create({
     borderRadius:10,
     paddingHorizontal:15,
     borderColor:colors.darkgray,
+    color:colors.black
   },
   errorMessage:{
     color:colors.red

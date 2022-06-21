@@ -5,6 +5,7 @@ import {View,Text,TextInput} from 'react-native';
 
 import styles from './NewRoomModal.style';
 import Button from '../../Button/Button';
+import colors from '../../../styles/colors';
 function NewRoomModal({visible,onClose,onSend}) {
 
   const [text, setText] = useState('');
@@ -19,7 +20,7 @@ function NewRoomModal({visible,onClose,onSend}) {
     >
       <View style={styles.container}>
         <Text style={styles.title}>add new room</Text>
-        <TextInput style={styles.input} placeholder='type a room name' onChangeText={setText} multiline/>
+        <TextInput style={styles.input} placeholderTextColor={colors.black} placeholder='type a room name' onChangeText={setText} multiline/>
         <Button text='add' onPress={()=>onSend(text)} />
       </View>
     </Modal>

@@ -36,6 +36,8 @@ function Rooms({navigation}) {
       })
       .then(res=>console.log(res))
       .catch(e=>console.log(e));
+      
+    setIsModalVisible(false);
   };
 
 

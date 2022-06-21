@@ -10,26 +10,22 @@ import auth from '@react-native-firebase/auth';
 import Rooms from './pages/Rooms/Rooms';
 import RoomDetail from './pages/RoomDetail/RoomDetail';
 import colors from './styles/colors';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ActivityIndicator } from 'react-native';
 
 const Stack=createNativeStackNavigator();
 
 
-const RequiredAuth=()=>{  
-  //auth().onAuthStateChanged((user)=>console.log(user));
-  auth().signOut();
-};
-
-
 const AuthStack=()=>{
   return (
-    <Stack.Navigator>
+    <>
       <Stack.Screen name='LoginPage' component={Login} options={{
         headerShown:false
       }} />
       <Stack.Screen name='RegisterPage' component={Register} options={{
         headerShown:false
       }} />
-    </Stack.Navigator>
+    </>
   );
 };
 
@@ -37,14 +33,24 @@ const AuthStack=()=>{
 
 function Router() {
   const [userSessions, setUserSessions] = useState([]);
+  const [loading, setloading] = useState(false);
 
   useEffect(() => {
+    setloading(true);
     auth().onAuthStateChanged((user)=>{
       setUserSessions(!!user);
+      setloading(false);
     });
+
   }, []);
   
+  const logout=()=>{
+    auth().signOut();
+  };
 
+  if(loading){
+    return <ActivityIndicator size={30}/>;
+  }
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -59,14 +65,16 @@ function Router() {
         {
           !userSessions 
             ? 
-            <AuthStack/>
+            AuthStack()
             :
             <>
               <Stack.Screen name='RoomsPage' component={Rooms} options={{
-                title:'Rooms'
+                title:'Rooms',
+                headerRight:()=><Icon name='logout' onPress={logout} color={colors.black} size={30}/>
               }}/>
-              <Stack.Screen name='RoomDetailPage' component={RoomDetail} options={{
-                title:'Room detail'
+              <Stack.Screen name='RoomDetailPage'  component={RoomDetail} options={{
+                title:'Room detail',
+                headerRight:()=><Icon name='logout' onPress={logout} color={colors.black} size={30}/>,
               }}/>
             </>
         }

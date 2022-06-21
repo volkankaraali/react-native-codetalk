@@ -8,8 +8,8 @@ export default StyleSheet.create({
   addButton_container:{
     backgroundColor:colors.red,
     position:'absolute',
-    width:40,
-    height:40,
+    width:50,
+    height:50,
     bottom:20,
     right:20,
     borderRadius:50,
@@ -17,7 +17,8 @@ export default StyleSheet.create({
     alignItems:'center'
   },
   addButton_text:{
-    color:colors.black
+    color:colors.black,
+    fontSize:25
   }
 
 });

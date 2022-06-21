@@ -17,10 +17,12 @@ export default StyleSheet.create({
     justifyContent:'space-between'
   },
   title:{
-    color:colors.black
+    color:colors.black,
+    fontWeight:'bold'
   },
   input:{
     padding:3,
+    color:colors.black
   }
 
 

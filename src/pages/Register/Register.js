@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 
-import {SafeAreaView,View,Text} from 'react-native';
+import {SafeAreaView,View,Text, ActivityIndicator} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -13,12 +13,16 @@ import { showMessage, hideMessage } from 'react-native-flash-message';
 
 function Register({navigation}) {
 
+  const [loading, setLoading] = useState(false);
+
+
   const register=async (userData)=>{
+    setLoading(true);
     try {
       const req= await auth().createUserWithEmailAndPassword(`${userData.email}`,`${userData.password}`);
-      console.log(req);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      setLoading(false);
       showMessage({
         message: authErrorMessageParse(error.code),
         type: 'danger',
@@ -65,7 +69,7 @@ function Register({navigation}) {
                 <Input error={errors.email} value={values.email} onChangeText={handleChange('email')} placeHolder='type email'/>
                 <Input error={errors.password} value={values.password} onChangeText={handleChange('password')} isSecure={true} placeHolder='type password'/>
                 <Input error={errors.repassword} value={values.repassword} onChangeText={handleChange('repassword')} isSecure={true} placeHolder='type repassword'/>
-                <Button text='register' onPress={handleSubmit} theme='primary'/>
+                <Button text={loading ? <ActivityIndicator/>:'register'} onPress={handleSubmit} theme='primary'/>
                 <Button text='login' onPress={goToLogin} theme='secondary' />
               </View>
             ) 
